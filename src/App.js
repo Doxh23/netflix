@@ -4,26 +4,40 @@ import requests from './component/request'
 import Row from './component/Row'
 import Header from './component/Header'
 import Banner from './component/Banner'
+import List from './component/List'
 
 
 export default function App() {
 const [action, setAction] = useState([])
 const [movie, setmovie] = useState([])
 const [genre, setgenre] = useState("all")
+const [list, setlist] = useState([])
+console.log(list);
+
 const banner = useRef(0)
-console.log(movie)
 
 // function styleheader()  {
 //   const scrheader = header.current.scrollTop
 //   console.log(scrheader); 
 // }
-
+if (genre === "list") {
+  return (
+    <>
+    <Header setgenre={setgenre}  />
+    <Banner list={list} movie={movie} banner={banner} setlist={setlist} />
+    <List list={list} setmovie={setmovie} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
+    // eslint-disable-next-line default-case
+    ></List>
+    </>
+  )
+}else{
 return ( 
     < >
     
     <div className='app'    >
     <Header setgenre={setgenre}  />
-    <Banner  movie={movie} banner={banner}/>
+    <Banner  movie={movie} setlist={setlist}/>
+  
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
     // eslint-disable-next-line default-case
     fetchUrl={(function () {
@@ -137,5 +151,5 @@ return (
 
  
     </>
-  )
+  )}
 }

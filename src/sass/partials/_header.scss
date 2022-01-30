@@ -7,16 +7,21 @@
     justify-content: space-between;
     width: 100vw;
     background: linear-gradient(rgb(0, 0, 0) 25% , transparent 100%);
-.logo-nav{
+.navigation{
     display: flex;
     flex-direction: row;
+    .nav-logo{
+object-fit: contain;
+width: 90px;
+    }
     ul{
         margin: 10px;
     display: flex;
     flex-direction: row;
     list-style-type: none;
     li{
-        margin:15px
+        margin:15px;
+        cursor:pointer;
     }
     }
 }

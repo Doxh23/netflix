@@ -1,9 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
+
 import baseURL from './base';
 
 
-export default function Banner({banner,movie}) {
-  console.log(movie)
+export default function Banner({banner,movie,setlist,list}) {
+  const addlist = ()=> {
+    const lists = [...list,movie]
+    setlist(movie)
+    console.log(list)
+  }
   return(
        <div className='banner' style={{ backgroundSize : "cover",
         backgroundPosition: "top",
@@ -15,7 +20,8 @@ export default function Banner({banner,movie}) {
            <p>{movie.overview}</p>
            </div>
            <div>
-             <button>
+             <button onClick={addlist}>
+               add
              </button>
              <button>
                </button>

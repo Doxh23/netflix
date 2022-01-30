@@ -24,10 +24,11 @@ export default function Row({fetchUrl,namecat,setmovie}) {
     <div> 
     {  !loading ?(
       <div>
-  
-      <h2>{namecat}</h2>
-      <ul className='movies'>
-      {movies.map(res =><li> 
+   
+      <h2 >{namecat}</h2>
+      
+      <ul key={namecat} className='movies'>
+      {movies.map(res =><li key={ (namecat === "Original netflix") ?  `${res.name}` : res.name ? `${res.name}`: `${res.title}`}> 
                 
                 <img className='img-movies' onClick={()=> setmovie(res)} src={`${baseURL}${res.poster_path}`} alt="" />
                 { (namecat === "Original netflix") ? <h3>{res.name}</h3> : res.name ? <h3>{res.name}</h3> : <h3>{res.title}</h3>}
