@@ -20,39 +20,38 @@ const banner = useRef(0)
 //   const scrheader = header.current.scrollTop
 //   console.log(scrheader); 
 // }
-if (genre === "list") {
-  return (
-    <>
-    <Header setgenre={setgenre}  />
-    <Banner list={list} movie={movie} banner={banner} setlist={setlist} />
-    <List list={list} setmovie={setmovie} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
-    // eslint-disable-next-line default-case
-    ></List>
-    </>
-  )
-}else{
+
 return ( 
     < >
     
     <div className='app'    >
     <Header setgenre={setgenre}  />
-    <Banner  movie={movie} setlist={setlist}/>
-  
-    <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
-    // eslint-disable-next-line default-case
-    fetchUrl={(function () {
-      switch (genre) {
-        case "all":
-          return requests.fetchNetflixOriginalsAll;
-          break;
-        case "movie":
-          return requests.fetchNetflixOriginalsMovie;
-          break;
-        case "tv":
-          return requests.fetchNetflixOriginalsTv;
-          break;
-      }
-    })()} ></Row>
+    <Banner list={list} movie={movie} banner={banner} setlist={setlist} />
+  {(()=> {
+    if (genre === "list") {
+      <List list={list} setmovie={setmovie} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
+      // eslint-disable-next-line default-case
+      ></List>
+    }else{
+      return ( <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
+      // eslint-disable-next-line default-case
+      fetchUrl={(function () {
+        switch (genre) {
+          case "all":
+            return requests.fetchNetflixOriginalsAll;
+            break;
+          case "movie":
+            return requests.fetchNetflixOriginalsMovie;
+            break;
+          case "tv":
+            return requests.fetchNetflixOriginalsTv;
+            break;
+        }
+      })()} ></Row>)
+    }
+  }
+  )}
+   
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"2"} namecat={"Trending"} fetchUrl={(function () {
                   switch (genre) {
                     case "all":
@@ -151,5 +150,5 @@ return (
 
  
     </>
-  )}
+  )
 }

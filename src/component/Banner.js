@@ -4,10 +4,18 @@ import baseURL from './base';
 
 
 export default function Banner({banner,movie,setlist,list}) {
+  let newarray = []
   const addlist = ()=> {
-    const lists = [...list,movie]
-    setlist(movie)
-    console.log(list)
+if(list.length === 0){
+  setlist ([movie])
+  console.log(list.length)
+}else{
+  newarray = list.concat(movie)
+  console.log(newarray)
+  setlist(newarray)
+
+}
+    
   }
   return(
        <div className='banner' style={{ backgroundSize : "cover",
