@@ -1,0 +1,15 @@
+.movies{
+        
+    scrollbar-width: none;
+    width: 100vw;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    .img-movies{
+        height: 200px;
+    }
+}
+.movies::-webkit-scrollbar{
+    display: none;
+}
