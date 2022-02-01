@@ -5,7 +5,7 @@ import {Oval} from "react-loader-spinner"
 
 
 
-export default function Row({fetchUrl,namecat,setmovie}) { 
+export default function Row({fetchUrl,namecat,setmovie,addtrailer,setloadtrailer}) { 
   const [movies, setmovies] = useState([])
   const [loading, setloading] = useState(true)
 
@@ -31,7 +31,11 @@ export default function Row({fetchUrl,namecat,setmovie}) {
       <ul key={namecat} className='movies'>
       {movies.map(res =><li key={ (namecat === "Original netflix") ?  `${res.name}` : res.name ? `${res.name}`: `${res.title}`}> 
                 
-                <img className='img-movies' onClick={()=> setmovie(res)} src={`${baseURL}${res.poster_path}`} alt="" />
+                <img className='img-movies' onClick={()=> {
+                  setmovie(res)
+                  addtrailer(res)
+                  setloadtrailer(true)
+                }} src={`${baseURL}${res.poster_path}`} alt="" />
                 { (namecat === "Original netflix") ? <h3>{res.name}</h3> : res.name ? <h3>{res.name}</h3> : <h3>{res.title}</h3>}
                 
          </li>

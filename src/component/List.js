@@ -1,8 +1,16 @@
 import React,{useState} from 'react';
 import baseURL from './base';
+import Youtube from "react-youtube"
 
 
-export default function List({list,namecat,setmovie}) {
+export default function List({list,namecat,setmovie,addtrailer,urltrailer,loadtrailer,setloadtrailer}) {
+    const opts = {
+        height: "390",
+        width: "100%",
+        playerVars: {
+          autoplay: 1,
+        },
+      };
     if ( list.length === 0) {
         return (
             <>
@@ -31,7 +39,8 @@ export default function List({list,namecat,setmovie}) {
             
           </ul>
       </div>
-    
+      { loadtrailer ?           <Youtube videoId={urltrailer} opts={opts} />
+ : ""} 
        
        </div>
        </>
