@@ -6,17 +6,22 @@ import baseURL from './base';
 export default function Banner({banner,movie,setlist,list}) {
   let newarray = []
   const addlist = ()=> {
-if(list.length === 0){
-  setlist ([movie])
-  console.log(list.length)
-}else{
-  newarray = list.concat(movie)
-  console.log(newarray)
-  setlist(newarray)
 
-}
+    if(!list.includes(movie)){
+      newarray = list.concat(movie)
+      console.log(newarray)
+      setlist(newarray)
+    }else{
+      list.map(el => {
+        if(el.id === movie.id){
+        newarray = list.filter((el) => el !== movie)
+        setlist(newarray)
+        }
+      })
+    }
     
-  }
+    }
+       
   return(
        <div className='banner' style={{ backgroundSize : "cover",
         backgroundPosition: "top",
@@ -28,11 +33,9 @@ if(list.length === 0){
            <p>{movie.overview}</p>
            </div>
            <div>
-             <button onClick={addlist}>
-               add
+           <button onClick={addlist}>
+               {(!list.includes(movie))? "add to my list" : "remove from my list"}
              </button>
-             <button>
-               </button>
                </div>
        </div>
   );

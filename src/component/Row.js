@@ -4,6 +4,7 @@ import instance from './axios';
 import {Oval} from "react-loader-spinner"
 
 
+
 export default function Row({fetchUrl,namecat,setmovie}) { 
   const [movies, setmovies] = useState([])
   const [loading, setloading] = useState(true)

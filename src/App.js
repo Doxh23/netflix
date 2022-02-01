@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unreachable */
 /* eslint-disable default-case */
 import React,{useState,useEffect,useRef} from 'react'
 import requests from './component/request'
@@ -27,13 +29,9 @@ return (
     <div className='app'    >
     <Header setgenre={setgenre}  />
     <Banner list={list} movie={movie} banner={banner} setlist={setlist} />
-  {(()=> {
-    if (genre === "list") {
-      <List list={list} setmovie={setmovie} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
+{ (genre === "list") ?  <List list={list} setmovie={setmovie} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
       // eslint-disable-next-line default-case
-      ></List>
-    }else{
-      return ( <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
+      /> : <> ( <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
       // eslint-disable-next-line default-case
       fetchUrl={(function () {
         switch (genre) {
@@ -46,11 +44,11 @@ return (
           case "tv":
             return requests.fetchNetflixOriginalsTv;
             break;
+            // eslint-disable-next-line no-unused-expressions
+            default : requests.fetchNetflixOriginalsAll ;
+            break;
         }
-      })()} ></Row>)
-    }
-  }
-  )}
+      })()} />
    
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"2"} namecat={"Trending"} fetchUrl={(function () {
                   switch (genre) {
@@ -63,8 +61,10 @@ return (
                     case "tv":
                       return requests.fetchTrendingTv;
                       break;
+                      default : requests.fetchTrendingAll ;
+                      break;
                   }
-                })()}></Row>
+                })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"3"} namecat={"topRated"} fetchUrl={(function () {
                   switch (genre) {
                     case "all":
@@ -76,8 +76,10 @@ return (
                     case "tv":
                       return requests.fetchTopRatedTv;
                       break;
+                      default : requests.fetchTopRatedAll ;
+                      break;
                   }
-                })()}></Row>
+                })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction}  key={"4"} namecat={"action"}  fetchUrl={(function () {
                     switch (genre) {
                       case "all":
@@ -89,8 +91,10 @@ return (
                       case "tv":
                         return requests.fetchActionMoviesTv;
                         break;
+                        default : requests.fetchActionMoviesAll ;
+                        break;
                     }
-                  })()}></Row>
+                  })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"5"} namecat={"comedy"} fetchUrl={(function () {
                   switch (genre) {
                     case "all":
@@ -102,8 +106,10 @@ return (
                     case "tv":
                       return requests.fetchComedyMoviesTv;
                       break;
+                      default : requests.fetchComedyMoviesAll ;
+                      break;
                   }
-                })()}></Row>
+                })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"6"} namecat={"horror"} fetchUrl={(function () {
                     switch (genre) {
                       case "all":
@@ -115,8 +121,10 @@ return (
                       case "tv":
                         return requests.fetchHorrorMoviesTv;
                         break;
+                        default : requests.fetchHorrorMoviesAll ;
+                        break;
                     }
-                  })()}></Row>
+                  })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"7"} namecat={"romance"}  fetchUrl={(function () {
                   switch (genre) {
                     case "all":
@@ -128,8 +136,10 @@ return (
                     case "tv":
                       return requests.fetchRomanceMoviesTv;
                       break;
+                      default : requests.fetchRomanceMoviesAll ;
+                      break;
                   }
-                })()}></Row>
+                })()}/>
     <Row action={action} setmovie={setmovie} banner={banner} setAction={setAction} key={"8"} namecat={"documentary"} fetchUrl={(function () {
                   switch (genre) {
                     case "all":
@@ -141,8 +151,12 @@ return (
                     case "tv":
                       return requests.fetchDocumentariesTv;
                       break;
+                      default : requests.fetchDocumentariesAll ;
+                      break;
                   }
-                })()}></Row>
+                })()}/> </> }
+     
+       
     </div>
 
 
