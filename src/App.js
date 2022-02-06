@@ -7,6 +7,7 @@ import Row from './component/Row'
 import Header from './component/Header'
 import Banner from './component/Banner'
 import List from './component/List'
+import Youtube from "react-youtube"
 import movieTrailer from "movie-trailer"
 
 
@@ -21,18 +22,27 @@ console.log(list);
 
 const banner = useRef(0)
 const addtrailer = (movie) => {
-  if(!urltrailer){
+  console.log(movie)
+  if(urltrailer){
     seturltrailer("")
   }else{
-  movieTrailer(movie?.name || movie?.title || movie.original_title || "")
+    console.log(urltrailer);
+ movieTrailer(movie?.name || movie?.title || movie.original_title || "")
   .then(res => {
-    let url = new URLSearchParams(new URL(res).search)
-    seturltrailer(url.get("v"))
+    let url = new URLSearchParams(new URL(res).search).get("v")
+    seturltrailer(url)
     console.log(urltrailer)
   } )
 
 }
 }
+const opts = {
+  height: "390",
+  width: "100%",
+  playerVars: {
+    autoplay: 1,
+  },
+};
 // function styleheader()  {
 //   const scrheader = header.current.scrollTop
 //   console.log(scrheader); 
@@ -42,11 +52,16 @@ return (
     < >
     
     <div className='app'    >
-    <Header setgenre={setgenre}  />
+    <Header setgenre={setgenre} setloadtrailer={setloadtrailer}  />
     <Banner list={list} movie={movie} banner={banner} setlist={setlist} />
-{ (genre === "list") ?  <List loadtrailer={loadtrailer} setloadtrailer={setloadtrailer} list={list} setmovie={setmovie} addtrailer={addtrailer} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
+{ (genre === "list") ? <>  <List loadtrailer={loadtrailer} movie={movie} setloadtrailer={setloadtrailer} list={list} setmovie={setmovie} addtrailer={addtrailer} setlist={setlist} banner={banner} key={"17"} namecat={"My list"}
+  
       // eslint-disable-next-line default-case
-      /> : <>  <Row action={action} setmovie={setmovie}  addtrailer={addtrailer} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
+      /> 
+       ({loadtrailer ?           <Youtube videoId={urltrailer} opts={opts} />
+    : ""})
+      </>
+   : <>  <Row action={action} setmovie={setmovie}  addtrailer={addtrailer} banner={banner} setAction={setAction} key={"1"} namecat={"original"}
       // eslint-disable-next-line default-case
       fetchUrl={(function () {
         switch (genre) {
@@ -64,7 +79,8 @@ return (
             break;
         }
       })()} />
-   
+    { loadtrailer ?           <Youtube videoId={urltrailer} opts={opts} />
+ : ""}
     <Row action={action} setmovie={setmovie} banner={banner} setloadtrailer={setloadtrailer} addtrailer={addtrailer} setAction={setAction} key={"2"} namecat={"Trending"} fetchUrl={(function () {
                   switch (genre) {
                     case "all":
