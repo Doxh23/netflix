@@ -1,4 +1,5 @@
-import React,{useRef} from 'react';
+import React from 'react';
+import profil from "../asset/profil.png"
 
 export default function Header({setgenre,setloadtrailer}) {
   
@@ -23,7 +24,7 @@ export default function Header({setgenre,setloadtrailer}) {
          </ul>
      </div>
      <div className='profil'>
-         profil</div> 
+         <img src={profil} alt="profil" style={{width : '40px'}}/></div> 
   </div>;
  </>
   )

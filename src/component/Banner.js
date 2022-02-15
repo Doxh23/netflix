@@ -28,15 +28,16 @@ export default function Banner({banner,movie,setlist,list}) {
         backgroundImage: `url(${baseURL}${movie.backdrop_path}
         )`,}} ref={banner}>
            
-<div>
+<div className='banner-text'>
            <h2> {movie.original_title ? movie.original_title : movie.original_name}</h2>
            <p>{movie.overview}</p>
            </div>
            <div>
-           <button onClick={addlist}>
+             {movie.overview ?  <button onClick={addlist}>
                {(!list.includes(movie))? "add to my list" : "remove from my list"}
-             </button>
+             </button>: '' }
+          
                </div>
        </div>
-  );
+  ); 
 }
