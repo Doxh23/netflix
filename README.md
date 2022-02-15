@@ -13,4 +13,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `npm run build`
 
-### live site web
+build the app
+
+### `npm i`
+
+don't forget to do run this command
+
+##link to netifly
+
+[Netflix](https://yelnetflix.netlify.app/).
+
+
