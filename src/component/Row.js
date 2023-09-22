@@ -15,7 +15,6 @@ export default function Row({fetchUrl,namecat,setmovie,addtrailer,setloadtrailer
     const data = await instance.get(`${fetchUrl}`)
     .then(response => setmovies(response.data.results))
     .then( setloading(false))
-    data = data
   }
   catch (e){
     console.log(e)
